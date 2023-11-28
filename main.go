@@ -4,10 +4,11 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/gorilla/mux"
 	"io/ioutil"
 	"log"
 	"net/http"
+
+	"github.com/gorilla/mux"
 )
 
 // Article - Our struct for all articles
@@ -17,6 +18,7 @@ type Article struct {
 	Intro   string `json:"intro"`
 	Content string `json:"content"`
 }
+
 var Articles []Article
 
 func returnAllArticles(w http.ResponseWriter, r *http.Request) {
@@ -42,6 +44,7 @@ func createNewArticle(w http.ResponseWriter, r *http.Request) {
 
 	Articles = append(Articles, article)
 	json.NewEncoder(w).Encode(article)
+	fmt.Println("changes in createNewArticle")
 }
 
 func deleteArticle(w http.ResponseWriter, r *http.Request) {
